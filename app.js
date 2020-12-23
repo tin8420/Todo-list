@@ -31,6 +31,14 @@ app.post('/todos', (req, res) => {
     .then(() => res.redirect('/'))  //新增完回傳首頁
     .catch(err => console.log(err))
 })
+app.get('/todos/:id', (req, res) => {
+  const id = req.params.id
+  console.log(id)
+  return Todo.findById(id)
+    .lean()
+    .then((todo) => res.render('detail', { todo }))
+    .catch(err => console.log(err))
+})
 
 app.get('/', (req, res) => {
   Todo.find()
