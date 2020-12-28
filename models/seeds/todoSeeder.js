@@ -1,11 +1,5 @@
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/todo-list', { useNewUrlParser: true, useUnifiedTopology: true })
 const Todo = require('../todo') // 載入 todo model
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error')
-})
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
   console.log('mongodb connected')
@@ -14,3 +8,4 @@ db.once('open', () => {
   }
   console.log('done')
 })
+
