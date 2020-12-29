@@ -1,6 +1,25 @@
+<style>
+  .id-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-control {
+    margin: 0 5px;
+  }
+</style>
 <form action="/todos/{{todo._id}}?_method=PUT" method="POST">
-  <input type="checkbox" name="isDone" {{#if todo.isDone}}checked {{/if}}>
-  <input type="text" placeholder="name" name="name" value="{{todo.name}}">
-  <button type="submit">Save</button>
-  <a href="/">back</a>
+  <li class="list-group-item">
+    <div class="inner-container">
+
+      <div class="id-info">
+        <input type="checkbox" name="isDone" {{#if todo.isDone}}checked {{/if}}>
+        <input type="text" class="form-control" placeholder="name" name="name" value="{{todo.name}}">
+      </div>
+      <div class="feature">
+        <button type="submit"><i class="far fa-save"></i></button>
+        <a href="/"><i class="fas fa-backward"></i></a>
+      </div>
+    </div>
+  </li>
 </form>

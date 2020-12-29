@@ -1,13 +1,36 @@
-<ul>
+<style>
+  ul {
+    display: flex;
+    margin: 0 auto;
+  }
+</style>
+
+
+<ul class="list-group">
   {{#each todos}}
-  <li>
-    <input type="checkbox" name="isDone" {{#if this.isDone}}checked{{/if}} disabled>
-    {{this.name}}
-    <a href="./todos/{{this._id}}">details</a>
-    <a href="./todos/{{this._id}}/edit">edit</a>
-    <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-      <button type="submit">delete</button>
-    </form>
+  <li class="list-group-item">
+    <div class="inner-container">
+      <div class="id-info">
+        <input style="vertical-align: middle;" type="checkbox" name="isDone" {{#if this.isDone}}checked{{/if}} disabled>
+        {{this.name}}
+      </div>
+      <div class="feature">
+        <a href="./todos/{{this._id}}"><i class="fas fa-info-circle"></i></a>
+        <a href="./todos/{{this._id}}/edit"><i class="far fa-edit"></i></a>
+        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+          <button class="btn-delete" type="submit"><i class="fas fa-trash-alt"></i></button>
+        </form>
+      </div>
+    </div>
+
+
   </li>
   {{/each}}
 </ul>
+
+<script>
+  const container = document.querySelector('.container')
+  container.addEventListener('click', function clickTrashBin(e) {
+    if (e.target.matches('.fa-trash-alt')) return confirm('確定刪除?')
+  })
+</script>
